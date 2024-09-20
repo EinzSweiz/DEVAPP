@@ -33,4 +33,4 @@ jobs:
         .
     - name: Push image
       run: |
-        docker push registry.digitalocean.com/cfe-k8ss/django-k8s-web:latest --all-tags
+        docker push registry.digitalocean.com/cfe-k8ss/django-k8s-web --all-tags
