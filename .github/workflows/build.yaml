@@ -29,8 +29,8 @@ jobs:
       working-directory: ./web
       run: |
         docker build -f Dockerfile \
-        -t registry.digitalocean.com/cfe-k8ss/django-k8s-web:latest \ 
-        .
+        -t registry.digitalocean.com/cfe-k8ss/django-k8s-web:latest .
+
     - name: Push image
       run: |
         docker push registry.digitalocean.com/cfe-k8ss/django-k8s-web --all-tags
