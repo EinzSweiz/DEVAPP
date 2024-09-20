@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 .kube
+/web/.env.prod
 
 # C extensions
 *.so
