@@ -10,7 +10,7 @@ on:
 
 jobs:
   test_django:
-    uses: EinzSweiz/DEVAPP/github/workflows/test-django.yaml@main
+    uses: EinzSweiz/DEVAPP/.github/workflows/test-django.yaml@main
   docker_build:
     runs-on: ubuntu-latest
     env:
