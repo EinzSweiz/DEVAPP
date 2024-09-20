@@ -37,7 +37,7 @@ jobs:
         docker push registry.digitalocean.com/cfe-k8ss/django-k8s-web --all-tags
     - name: K8s cluster kubeconfig file with / short lived creds 
       run: |
-        doctl kubernetes cluster save --expiry-seconds 600 ${{ env.CLUSTER_NAME }}
+        doctl kubernetes cluster save ${{ env.CLUSTER_NAME }}
     - name: Update Deployment image
       run: |
         kubectl set image deployment/django-k8s-web-deployment django-k8s-web=registry.digitalocean.com/cfe-k8ss/django-k8s-web:latest
