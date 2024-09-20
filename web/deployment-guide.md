@@ -33,6 +33,8 @@ kubectl create secret generic devapp-web-prod-env(name what we will put to secre
 7. migrate Datbase
 
 '''
+exporting the POD:export SINGLE_POD_NAME=$(kubectl get pod -l app=django-k8s-web-deployment -o jsonpath="{.items[0].metadata.name}")
+
 first: kubectl exec -it pod_name -- /bin/bash
 second: activate venv, then run  python manage.py migrate or use bash script (example migrate.sh)
 -----------------------------------------------------
