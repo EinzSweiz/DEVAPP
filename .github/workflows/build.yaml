@@ -11,10 +11,26 @@ on:
 jobs:
   test_django_job:
     uses: EinzSweiz/DEVAPP/.github/workflows/test-django.yaml@main
-  docker_build:
+  build:
     runs-on: ubuntu-latest
     needs: [test_django_job]
     env:
       DJANGO_SECRET_KEY: test-key-not-good-maybe-make-one-better
     steps:
-    - uses: actions/checkout@v4
+    - name: Chekout code
+      uses: actions/checkout@v4
+    - name: Install doctl
+      uses: digitalocean/action-doctl@v2
+      with:
+        token: ${{ secrets.DO_API_TOKEN_KEY }} 
+    - name: Login to DO Container Registry
+      run: doctl registry login --expiry-seconds 1200
+    - name: Build container image
+      working-directory: ./web
+      run: |
+        docker build -f Dockerfile \
+        -t registry.digitalocean.com/cfe-k8ss/django-k8s-web:latest \ 
+        .
+    - name: Push image
+      run: |
+        docker push registry.digitalocean.com/cfe-k8ss/django-k8s-web:latest --all-tags
